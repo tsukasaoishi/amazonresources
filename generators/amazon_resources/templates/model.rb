@@ -66,6 +66,7 @@ class <%= class_name %> < ActiveRecord::Base
     item.media = (doc/:itemattributes/:binding).inner_html
     item.release_date = (doc/:publicationdate).inner_html
     item.release_date = (doc/:releasedate).inner_html
+    item.release_date = (doc/:publicationdate).inner_html if item.release_date.blank?
     item.price = (doc/:listprice/:formattedprice).inner_html
     item
   end
