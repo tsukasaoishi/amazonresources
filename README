@@ -1,0 +1,46 @@
+AmazonResources
+=====================
+
+You need Hpricot.
+
+  gem install hpricot
+
+
+Usage:
+
+  ./script/generate amazon_resources ModelName AccessKeyID AssociateTag
+
+
+Example
+=======
+
+If your AWS AccessKeyID is XXXXYYYZZZ, and your AWS AssociateTAG is AAAAA-22
+then,
+
+  ./script/generate amazon_resouces amazon XXXXYYYZZZ AAAAA-22
+
+and create amazon table
+
+  rake db:migrate
+
+
+In Code
+=======
+
+You can use Amazon products to the way of ActiveRecord by using find_by_asin().
+
+  book = Amazon.find_by_asin(4274066967)
+
+find_by_isbn is prepared as alias of find_by_asin.
+
+  book = Amazon.find_by_isbn(4274066967)
+
+
+You are able to use ISBN13
+
+  book = Amazon.find_by_isbn13('978-4274066962')
+
+or
+
+  book = Amazon.find_by_isbn13(9784274066962)
+
