@@ -1,5 +1,6 @@
 require 'hpricot'
 require 'open-uri'
+require 'timeout'
 
 class <%= class_name %> < ActiveRecord::Base
   TARGET = {:asin => "asin", :isbn13 => "isbn13"}
@@ -28,9 +29,8 @@ class <%= class_name %> < ActiveRecord::Base
     if !item || (item.updated_at < 1.week.ago)
       item = self.new(target.to_sym => key) unless item
 
-      doc = nil
-      timeout(5) do
-        doc = eval("get_by_#{target}(key)")
+      doc = timeout(5) do
+        eval("get_by_#{target}(key)")
       end
       return nil unless (doc/:request/:errors).blank?
 
@@ -38,7 +38,7 @@ class <%= class_name %> < ActiveRecord::Base
       item.save!
     end
     item
-  rescue ActiveRecord::RecordInvalid, TimeoutError
+  rescue ActiveRecord::RecordInvalid, Timeout::Error
     nil
   end
 
