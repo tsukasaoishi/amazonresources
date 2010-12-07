@@ -1,5 +1,4 @@
-AmazonResources
-=====================
+== AmazonResources
 
 You need Hpricot.
 
@@ -11,8 +10,7 @@ Usage:
   ./script/generate amazon_resources ModelName AccessKeyID AssociateTag
 
 
-Example
-=======
+== Example
 
 If your AWS AccessKeyID is XXXXYYYZZZ, and your AWS AssociateTAG is AAAAA-22
 then,
@@ -24,8 +22,7 @@ and create amazon table
   rake db:migrate
 
 
-In Code
-=======
+== In Code
 
 You can use Amazon products to the way of ActiveRecord by using find_by_asin().
 
@@ -44,3 +41,6 @@ or
 
   book = Amazon.find_by_isbn13(9784274066962)
 
+== Licence
+
+released under the MIT license
